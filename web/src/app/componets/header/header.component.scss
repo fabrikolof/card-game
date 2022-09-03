@@ -1,0 +1,74 @@
+// .example-spacer {
+//   flex: 1 1 auto;
+// }
+
+// img {
+//   border-radius: 50%;
+//   height: 30px;
+//   width: 30px;
+// }
+
+//https://www.color-hex.com/color-palette/1017438
+
+body{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  margin: 0;
+}
+
+a{
+  text-decoration: none;
+  color: rgb(162,0,255);
+}
+
+h2{
+  margin: auto;
+  padding-left: 3px;
+}
+
+.uname{
+  font-size: medium;
+  color: rgb(0,255,0);
+}
+
+header{
+  display: flex;
+  min-height: 70px;
+  background-color: rgb(255,128,0);
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.logo{
+  display: flex;
+  align-items: center;
+  text-align: left;
+}
+
+.logo img{
+  height: 50px;
+  margin-left: 10px;
+  margin-right: 5px ;
+}
+
+nav a{
+  font-weight: 600;
+  padding-right: 10px;
+  border: none;
+}
+
+
+nav a:hover{
+  color: rgb(0,223,255);
+  background-color: transparent;
+}
+
+@media (max-width: 700px){
+  header{
+      flex-direction: column;
+  }
+
+  nav{
+      padding: 10px 0px;
+  }
+}

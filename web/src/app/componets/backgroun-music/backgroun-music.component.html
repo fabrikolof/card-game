@@ -1,0 +1,13 @@
+<div class="music_container">
+  <button (click)="playMusic()">Play Music</button>
+  <mat-slider
+    min="1"
+    max="100"
+    step="1"
+    [value]="volumen"
+    (input)="volumen = $event.value"
+    (change)="musicVolumen()"
+    ></mat-slider>
+    {{ volumen }}
+  <button (click)="pauseMusic()">Pause Music</button>
+</div>

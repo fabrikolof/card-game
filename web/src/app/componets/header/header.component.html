@@ -1,0 +1,27 @@
+<!-- <mat-toolbar color="warn">
+  <span> Cardgame</span>
+  <span class="example-spacer"></span>
+  <button *ngIf="auth.isLoggedIn;" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+    <img (click)="menu()" src= {{auth.user.photoURL}} referrerpolicy="no-referrer" alt="Avatar">
+  </button>
+  <button *ngIf="auth.isLoggedIn;" mat-icon-button class="example-icon" aria-label="Example icon-button with share icon" >
+    <mat-icon (click)="auth.signOut()">logout</mat-icon>
+  </button>
+</mat-toolbar> -->
+
+<header>
+  <a routerLink="/home" class="logo">
+    <img src="https://vignette.wikia.nocookie.net/logocomics/images/3/37/Marvel_heroes.png/revision/latest/scale-to-width-down/2000?cb=20151209135338" alt="game logo">
+    <h2 class="game-name" [ngSwitch]="auth.isLoggedIn" >Card Game <br> <span class="uname" *ngSwitchCase="true" > {{this.auth.user.displayName}} </span></h2>
+  </a>
+  <app-backgroun-music></app-backgroun-music>
+  <nav>
+
+    <a routerLink="/home" class="nav-link" [ngSwitch]="auth.isLoggedIn"><span *ngSwitchCase="true">Inicio</span></a>
+    <a routerLink="/list" class="nav-link" [ngSwitch]="auth.isLoggedIn"><span *ngSwitchCase="true">Lista de juegos</span></a>
+    <a routerLink="/misjuegos" class="nav-link" [ngSwitch]="auth.isLoggedIn"><span *ngSwitchCase="true">Historial</span></a>
+    <a class="nav-link" [ngSwitch]="auth.isLoggedIn"> <span *ngSwitchCase="true" (click)="logOut()">Logout</span>
+      <span routerLink="/login" *ngSwitchCase="false">Login</span> </a>
+
+  </nav>
+</header>
