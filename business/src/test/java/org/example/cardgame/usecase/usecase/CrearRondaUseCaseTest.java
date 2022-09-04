@@ -52,7 +52,6 @@ class CrearRondaUseCaseTest {
                 })
                 .expectComplete()
                 .verify();
-
     }
 
     private Flux<DomainEvent> juegoCreado() {
