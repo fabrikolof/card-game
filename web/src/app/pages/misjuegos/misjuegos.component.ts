@@ -11,7 +11,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 })
 export class MisjuegosComponent implements OnInit, OnDestroy {
 
-  displayedColumns: string[] = ['alias', 'cantidad', 'ganador', 'participantes'];
+  displayedColumns: string[] = ['alias', 'cantidad', 'ganador'];
   dataSource: JuegoModel[] = [];
  //jugadoresDePartida: Map<string, Jugador>[] = [];
 
