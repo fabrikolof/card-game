@@ -12,7 +12,7 @@ import { AuthService } from 'src/app/shared/services/auth.service';
 export class MisjuegosComponent implements OnInit, OnDestroy {
 
   displayedColumns: string[] = ['alias', 'cantidad', 'ganador'];
-  dataSource: JuegoModel[] = [];
+  dataSource: JuegoModel[] | any = [];
  //jugadoresDePartida: Map<string, Jugador>[] = [];
 
   constructor(
@@ -25,9 +25,11 @@ export class MisjuegosComponent implements OnInit, OnDestroy {
       this.ws.close();
     }
     ngOnInit(): void {
-      this.api.getMisJuegos(this.authService.user.uid).subscribe((elements) => {
-        this.dataSource = elements.filter(element => element.finalizado)
-        console.log(this.dataSource);
+      this.api.getHistorial(this.authService.user.uid).subscribe((elements) => {
+        this.dataSource = elements;
+        //this.dataSource = elements.filter(element => element.finalizado)
+        console.log(elements);
+        console.log(this.authService.user.uid);
       });
     }
 

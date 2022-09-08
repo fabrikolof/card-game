@@ -40,11 +40,14 @@ export class ApiService {
       return jugadores;
     }));
   }
-  
+
   getMiMazo(uid:string, juegoId:string){
     return this.http.get(environment.apiBase + '/juego/mazo/' + uid + '/' + juegoId);
   }
-
+  //historial 
+  getHistorial(uid:string) {
+    return this.http.get(environment.apiBase + "/juego/listar/finalizados/" + uid);
+  }
   getMisJuegos(uid: string): Observable<JuegoModel[]> {
     return this.http.get<JuegoModel[]>(environment.apiBase + '/juego/listar/'+uid);
    }

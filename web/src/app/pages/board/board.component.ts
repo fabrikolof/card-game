@@ -68,7 +68,7 @@ export class BoardComponent implements OnInit, OnDestroy {
       this.ws.connect(this.juegoId);
       this.ws.subscribe((event) => {
 
-        console.log(event);
+        //console.log(event);
 
         if (event.type === 'cardgame.ponercartaentablero') {
           this.cartasDelTablero.push({
@@ -96,12 +96,7 @@ export class BoardComponent implements OnInit, OnDestroy {
         }
 
         if(event.type === 'cardgame.rondaterminada'){
-          this.roundStarted = false;
           this.cartasDelTablero = [];
-          this.tiempo = 30;
-          this.numeroRonda++;
-          //this.tiempo = event.tiempo;
-          //this.numeroRonda = event.numeroRonda;
         }
 
         if(event.type === 'cardgame.juegofinalizado'){
@@ -112,11 +107,30 @@ export class BoardComponent implements OnInit, OnDestroy {
         }
 
         if(event.type === 'cardgame.cartasasignadasajugador'){
-
+          if(event.ganadorId.uuid == this.uid){
+              const lastCard = event.cartasApuesta.length;
+              const cartasApostadas = event.cartasApuesta;
+              console.log("cartasasignadasajugador");
+              //console.log(event);
+              cartasApostadas.forEach((carta:any|Carta, index:number) => {
+                if(lastCard -1 === index || lastCard -2 === index) {
+                  console.log(carta);
+                  this.cartasDelJugador.push({
+                    cartaId: carta.cartaId.uuid,
+                    poder: carta.poder,
+                    estaOculta: carta.estaOculta,
+                    estaHabilitada: carta.estaHabilitada,
+                  });
+                }
+              });
+            }
         }
 
         if(event.type === 'cardgame.rondacreada'){
-
+          this.roundStarted = event.ronda.estaIniciada;
+          this.jugadoresRonda = event.ronda.jugadores.length;
+          this.tiempo = event.ronda.tiempo;
+          this.numeroRonda = event.ronda.numero;
         }
       })
     });

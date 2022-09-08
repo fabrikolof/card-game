@@ -43,6 +43,18 @@ public class QueryHandle {
         );
     }
 
+    @Bean
+    public RouterFunction<ServerResponse> listarJuegosFinalizadosRancios() {
+        return route(
+                GET("/juego/listar/finalizados/{id}"),
+                request -> template.find(filterByUId(request.pathVariable("id")), JuegoListViewModel.class, "gameview")
+                        .filter(JuegoListViewModel::getFinalizado)
+                        .collectList()
+                        .flatMap(list -> ServerResponse.ok()
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(BodyInserters.fromPublisher(Flux.fromIterable(list), JuegoListViewModel.class)))
+        );
+    }
 
     @Bean
     public RouterFunction<ServerResponse> getTablero() {
